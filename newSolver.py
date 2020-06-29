@@ -2,7 +2,7 @@ import numpy as np
 from XXZmodels import *
 from laguerre import *
 import pylab as pl
-from permutations import *
+#from permutations import *
 
 class equations(object):
   def __init__(self,XXZ_,kop_,excitations_,sol_ = None):

@@ -22,8 +22,9 @@ if __name__ == '__main__':
   sol=eq.get_solution()               #Returns the set of g*Lambda_i
   error=eq.evaluate(sol)              #Evaluate the substituted equations  
 
-  print "g*Lambda_i:\n%s"%sol)
+  print("g*Lambda_i:\n%s"%sol)
   print("Error: %s"%np.linalg.norm(error))
+  print("Energy from Lambda_i:",-np.sum([lev_i*sol[i] for i,lev_i in enumerate(levels)]) + g*N_ex*(len(levels)-N_ex+1))
 
 
   occ=eq.get_occupation()            #Get occupation numbers <S_i^0>
@@ -52,11 +53,12 @@ if __name__ == '__main__':
   eq.solve(evol=True,movingGrid=True)    #No init=... given results in ground state of BCS model, movingGrid=True allows for the calculation of the rapidities
   rap=eq.get_rapidities()        #Get rapidities
   print("Rapidities:\n%s"%rap)
+  print("Energy from rapidities: ", 2.*np.sum(rap))
 
   print("Larger example of a picket fence model")
   levels=[1.*i for i in range(1,41)]
   XXZ=XXZmodel(levels)
-  g=-1.
+  g=-.1
   N_ex=20
   eq=equations(XXZ,g,N_ex)
   [g_evol,var_evol]=eq.solve(g_step=5e-3,evol=True)
